@@ -47,4 +47,17 @@ public class PostgresMovieRepository implements MovieRepository {
                 .getResultList();
     }
 
+    @Override
+    public Movie create(String title, Integer year) {
+        LOGGER.info("Create new movie with title = '{}' and year = {}", title, year);
+        final Movie movie = new Movie();
+        movie.setTitle(title);
+        movie.setYear(year);
+        movie.setCreationUser("hibernate-demo-app");
+        this.entityManager.getTransaction().begin();
+        this.entityManager.merge(movie);
+        this.entityManager.getTransaction().commit();
+        return movie;
+    }
+
 }

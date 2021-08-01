@@ -2,6 +2,8 @@ package io.redbee.academy.persistence.hibernate.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.Set;
 
 @Entity
 @Table(name = "genre")
@@ -15,6 +17,9 @@ public class Genre implements Serializable {
     private String description;
     @Column(name = "creation_user")
     private String creationUser;
+
+    @ManyToMany(mappedBy = "genres")
+    private Set<Movie> movies = Collections.emptySet();
 
     public Integer getId() {
         return id;
@@ -38,6 +43,14 @@ public class Genre implements Serializable {
 
     public void setCreationUser(String creationUser) {
         this.creationUser = creationUser;
+    }
+
+    public Set<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(Set<Movie> movies) {
+        this.movies = movies;
     }
 
     @Override

@@ -2,6 +2,8 @@ package io.redbee.academy.persistence.hibernate.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.Set;
 
 @Entity
 @Table(name = "movie")
@@ -17,6 +19,14 @@ public class Movie implements Serializable {
     private Integer year;
     @Column(name = "creation_user")
     private String creationUser;
+
+    @ManyToMany
+    @JoinTable(
+            name = "movie_genre",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
+    private Set<Genre> genres = Collections.emptySet();
 
     public Integer getId() {
         return id;
@@ -48,6 +58,14 @@ public class Movie implements Serializable {
 
     public void setCreationUser(String creationUser) {
         this.creationUser = creationUser;
+    }
+
+    public Set<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(Set<Genre> genres) {
+        this.genres = genres;
     }
 
     @Override

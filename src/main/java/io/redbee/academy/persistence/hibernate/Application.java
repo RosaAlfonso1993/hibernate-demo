@@ -26,7 +26,7 @@ public class Application {
         final Integer movieId = 1;
         final Optional<Movie> movieById = movieRepository.find(movieId);
         movieById.ifPresentOrElse(
-                movie -> LOGGER.info("Movie {}: {}", movieId, movie),
+                movie -> LOGGER.info("Movie {}: {} with genres {}", movieId, movie, movie.getGenres()),
                 () -> LOGGER.info("Movie not found for id {}", movieId)
         );
 
@@ -34,6 +34,9 @@ public class Application {
         final List<Movie> moviesByTitle = movieRepository.findByTitle(searchTerm);
         LOGGER.info("Movies with '{}': {}", searchTerm, moviesByTitle.size());
         moviesByTitle.forEach(movie -> LOGGER.info(movie.toString()));
+
+        final Movie newMovie = movieRepository.create("Se7en", 1995);
+        LOGGER.info("Created movie: {}", newMovie);
 
         LOGGER.info("Application end");
     }

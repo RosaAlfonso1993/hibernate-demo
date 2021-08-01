@@ -13,4 +13,6 @@ public interface MovieRepository {
 
     List<Movie> findByTitle(String term);
 
+    Movie create(String title, Integer year);
+
 }
