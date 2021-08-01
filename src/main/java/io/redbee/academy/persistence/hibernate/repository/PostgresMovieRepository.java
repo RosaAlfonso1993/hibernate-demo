@@ -40,10 +40,10 @@ public class PostgresMovieRepository implements MovieRepository {
     }
 
     @Override
-    public List<Movie> find(String title) {
-        LOGGER.info("Find movies by title '{}'", title);
+    public List<Movie> findByTitle(String term) {
+        LOGGER.info("Find movies by title '{}'", term);
         return this.entityManager.createQuery(GET_MOVIE_BY_TITLE_SEARCH_TERM_QUERY, Movie.class)
-                .setParameter("searchTerm", "%" + title + "%")
+                .setParameter("searchTerm", "%" + term + "%")
                 .getResultList();
     }
 

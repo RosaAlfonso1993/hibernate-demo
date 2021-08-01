@@ -11,6 +11,6 @@ public interface MovieRepository {
 
     Optional<Movie> find(Integer id);
 
-    List<Movie> find(String title);
+    List<Movie> findByTitle(String term);
 
 }

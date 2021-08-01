@@ -31,7 +31,7 @@ public class Application {
         );
 
         final String searchTerm = "o";
-        final List<Movie> moviesByTitle = movieRepository.find(searchTerm);
+        final List<Movie> moviesByTitle = movieRepository.findByTitle(searchTerm);
         LOGGER.info("Movies with '{}': {}", searchTerm, moviesByTitle.size());
         moviesByTitle.forEach(movie -> LOGGER.info(movie.toString()));
 
