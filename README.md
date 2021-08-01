@@ -5,28 +5,11 @@
 Este proyecto tiene como objetivo demostrar c&oacute;mo realizar consultas a una Base de datos utilizando JPA y Hibernate.
 
 - [Pre-requisitos](#pre-requisitos)
-    * [Java 11](#java-11)
     * [Postgres](#postgres)
 - [Ejecuci&oacute;n](#ejecución)
 - [Contacto](#contacto)
 
 ## Pre-requisitos
-
-### Java 11
-
-En caso de no contar con dicha versi&oacute;n de Java instalada, se recomienda hacerlo mediante [SdkMan](https://sdkman.io/).
-
-Se pueden listar las versiones disponibles ejecutando en la terminal el comando:
-
-```bash
-sdk list java
-```
-
-Una vez identificada la versi&oacute;n a utilizar (Ej: 11.0.3-zulu), ejecutar el siguiente comando en la terminal:
-
- ```bash
- sdk use java 11.0.3-zulu
- ```
 
 ### Postgres
 
