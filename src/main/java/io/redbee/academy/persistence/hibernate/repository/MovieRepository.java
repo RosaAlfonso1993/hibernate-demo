@@ -9,7 +9,7 @@ public interface MovieRepository {
 
     List<Movie> getAll();
 
-    Optional<Movie> find(Long id);
+    Optional<Movie> find(Integer id);
 
     List<Movie> find(String title);
 

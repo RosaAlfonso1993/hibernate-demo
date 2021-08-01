@@ -1,19 +1,30 @@
 package io.redbee.academy.persistence.hibernate.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "movie")
 public class Movie implements Serializable {
 
-    private Long id;
+    @Id
+    @Column(name = "id")
+    private Integer id;
+    @Column(name = "title")
     private String title;
+    @Column(name = "year")
     private Integer year;
+    @Column(name = "creation_user")
     private String creationUser;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

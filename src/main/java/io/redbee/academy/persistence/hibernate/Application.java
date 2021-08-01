@@ -6,6 +6,8 @@ import io.redbee.academy.persistence.hibernate.repository.PostgresMovieRepositor
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,19 +17,30 @@ public class Application {
 
     public static void main(String[] args) {
         LOGGER.info("Application start");
-        MovieRepository movieRepository = new PostgresMovieRepository();
+        final EntityManager entityManager = createEntityManager();
+        final MovieRepository movieRepository = new PostgresMovieRepository(entityManager);
 
         final List<Movie> allMovies = movieRepository.getAll();
         LOGGER.info("Total of movies from DB: {}", allMovies.size());
 
-        final long movieId = 1L;
+        final Integer movieId = 1;
         final Optional<Movie> movieById = movieRepository.find(movieId);
         movieById.ifPresentOrElse(
                 movie -> LOGGER.info("Movie {}: {}", movieId, movie),
                 () -> LOGGER.info("Movie not found for id {}", movieId)
         );
 
+        final String searchTerm = "o";
+        final List<Movie> moviesByTitle = movieRepository.find(searchTerm);
+        LOGGER.info("Movies with '{}': {}", searchTerm, moviesByTitle.size());
+        moviesByTitle.forEach(movie -> LOGGER.info(movie.toString()));
+
         LOGGER.info("Application end");
+    }
+
+    private static EntityManager createEntityManager() {
+        return Persistence.createEntityManagerFactory("movies")
+                .createEntityManager();
     }
 
 }
