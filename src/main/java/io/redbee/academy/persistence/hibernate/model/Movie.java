@@ -1,9 +1,6 @@
 package io.redbee.academy.persistence.hibernate.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -11,7 +8,8 @@ import java.io.Serializable;
 public class Movie implements Serializable {
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", columnDefinition = "serial")
     private Integer id;
     @Column(name = "title")
     private String title;

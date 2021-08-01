@@ -1,6 +1,6 @@
 create table genre
 (
-    id            smallserial                        not null
+    id            serial                            not null
         constraint genre_pk primary key,
     description   character varying                  not null,
     creation_user character varying default 'script' not null
@@ -23,7 +23,7 @@ create table movie_genre
 (
     movie_id int      not null
         constraint movie_genre_movie_id_fk references movie,
-    genre_id smallint not null
+    genre_id int      not null
         constraint movie_genre_genre_id_fk references genre,
     constraint movie_genre_pk unique (movie_id, genre_id)
 );

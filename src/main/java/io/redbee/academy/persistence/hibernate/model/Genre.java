@@ -1,11 +1,19 @@
 package io.redbee.academy.persistence.hibernate.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "genre")
 public class Genre implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", columnDefinition = "serial")
     private Integer id;
+    @Column(name = "description")
     private String description;
+    @Column(name = "creation_user")
     private String creationUser;
 
     public Integer getId() {

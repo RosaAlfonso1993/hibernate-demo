@@ -6,6 +6,7 @@
 
     <persistence-unit name="movies">
         <class>io.redbee.academy.persistence.hibernate.model.Movie</class>
+        <class>io.redbee.academy.persistence.hibernate.model.Genre</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
