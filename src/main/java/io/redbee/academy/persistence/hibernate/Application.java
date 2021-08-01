@@ -1,8 +1,8 @@
 package io.redbee.academy.persistence.hibernate;
 
 import io.redbee.academy.persistence.hibernate.model.Movie;
+import io.redbee.academy.persistence.hibernate.repository.DatabaseMovieRepository;
 import io.redbee.academy.persistence.hibernate.repository.MovieRepository;
-import io.redbee.academy.persistence.hibernate.repository.PostgresMovieRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +18,7 @@ public class Application {
     public static void main(String[] args) {
         LOGGER.info("Application start");
         final EntityManager entityManager = createEntityManager();
-        final MovieRepository movieRepository = new PostgresMovieRepository(entityManager);
+        final MovieRepository movieRepository = new DatabaseMovieRepository(entityManager);
 
         final List<Movie> allMovies = movieRepository.getAll();
         LOGGER.info("Total of movies from DB: {}", allMovies.size());

@@ -8,16 +8,17 @@ import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
-public class PostgresMovieRepository implements MovieRepository {
+public class DatabaseMovieRepository implements MovieRepository {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PostgresMovieRepository.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseMovieRepository.class);
 
     private static final String GET_ALL_MOVIES_QUERY = "FROM Movie";
-    private static final String GET_MOVIE_BY_TITLE_SEARCH_TERM_QUERY = "FROM Movie AS m WHERE m.title LIKE :searchTerm";
+    private static final String SEARCH_TERM_KEY = "searchTerm";
+    private static final String GET_MOVIE_BY_TITLE_SEARCH_TERM_QUERY = "FROM Movie AS m WHERE m.title LIKE :" + SEARCH_TERM_KEY;
 
     private EntityManager entityManager;
 
-    public PostgresMovieRepository(EntityManager entityManager) {
+    public DatabaseMovieRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
@@ -43,7 +44,7 @@ public class PostgresMovieRepository implements MovieRepository {
     public List<Movie> findByTitle(String term) {
         LOGGER.info("Find movies by title '{}'", term);
         return this.entityManager.createQuery(GET_MOVIE_BY_TITLE_SEARCH_TERM_QUERY, Movie.class)
-                .setParameter("searchTerm", "%" + term + "%")
+                .setParameter(SEARCH_TERM_KEY, "%" + term + "%")
                 .getResultList();
     }
 
