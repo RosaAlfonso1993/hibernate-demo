@@ -41,4 +41,14 @@ public class Movie implements Serializable {
         this.creationUser = creationUser;
     }
 
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", year=" + year +
+                ", creationUser='" + creationUser + '\'' +
+                '}';
+    }
+
 }

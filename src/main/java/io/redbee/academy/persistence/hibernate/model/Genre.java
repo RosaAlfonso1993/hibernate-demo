@@ -32,4 +32,13 @@ public class Genre implements Serializable {
         this.creationUser = creationUser;
     }
 
+    @Override
+    public String toString() {
+        return "Genre{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", creationUser='" + creationUser + '\'' +
+                '}';
+    }
+
 }
