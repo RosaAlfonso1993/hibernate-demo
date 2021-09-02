@@ -28,6 +28,8 @@ create table movie_genre
     constraint movie_genre_pk unique (movie_id, genre_id)
 );
 
+create index genre_description_index on genre (description);
+
 insert into genre (description)
 values
   ('Biography'),

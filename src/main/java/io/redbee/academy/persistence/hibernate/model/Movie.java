@@ -20,6 +20,20 @@ public class Movie implements Serializable {
     @Column(name = "creation_user")
     private String creationUser;
 
+    @OneToOne(
+            mappedBy = "movie",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    private Director director;
+    public Director getDirector() {
+        return director;
+    }
+    public void setDirector(Director director) {
+        this.director = director;
+    }
+
     @ManyToMany
     @JoinTable(
             name = "movie_genre",
